@@ -160,6 +160,7 @@ its window is open, and the iOS build for as long as its audio session survives 
 | **Volume keys / headset button** | Hold to talk (opt-in setting) | Volume keys while the app is on screen; the headset's media button anywhere the session runs. Some headsets send only a click, giving a short transmission |
 | **Notification** | Tap **Talk** / **Stop** | Present whenever the session is running |
 | **Home-screen widget** | Tap to toggle, −/+ for channel | Toggle only — RemoteViews deliver clicks, never touch-down/up, so hold-to-talk is not expressible in a widget |
+| **Wear OS watch** | Hold to talk, −/+ for channel | The watch microphone and speaker carry the audio; the phone keeps the connection. Start the session on the phone first. See [`docs/wear-companion.md`](docs/wear-companion.md) |
 
 ## Tests
 

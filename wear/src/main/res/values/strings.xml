@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PTT</string>
+    <string name="no_phone">NO PHONE</string>
+    <string name="channel_label">CH %1$d</string>
+    <string name="channel_down">Previous channel</string>
+    <string name="channel_up">Next channel</string>
+</resources>
