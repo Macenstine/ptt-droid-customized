@@ -9,6 +9,10 @@ import com.github.devapro.pttdroid.domain.PttSessionLauncher
 import com.github.devapro.pttdroid.domain.ServicePttSessionLauncher
 import com.github.devapro.pttdroid.foreground.ActivityForegroundTracker
 import com.github.devapro.pttdroid.overlay.OverlayController
+import com.github.devapro.pttdroid.wear.RoutingPlayer
+import com.github.devapro.pttdroid.wear.RoutingRecorder
+import com.github.devapro.pttdroid.wear.WearAudioHub
+import com.github.devapro.pttdroid.wear.WearBridge
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -27,16 +31,22 @@ import org.koin.dsl.module
  * declared in `sharedModule`: Koin merges every loaded module into one graph.
  */
 val appModule = module {
-    single { VoiceRecorder(get(SESSION_SCOPE)) } bind VoiceRecorderContract::class
+    // Audio goes through the Wear routers: the phone's own recorder/player unless a watch is
+    // attached (and, for the microphone, the transmission was started from the watch).
+    single { WearAudioHub() }
+    single<VoiceRecorderContract> { RoutingRecorder(VoiceRecorder(get(SESSION_SCOPE)), get()) }
     // Needs a Context of its own for AudioManager: the speaker/earpiece choice is half
     // AudioAttributes on the track and half the process's audio mode. See VoicePlayer's KDoc.
-    single { VoicePlayer(androidContext()) } bind VoicePlayerContract::class
+    single<VoicePlayerContract> { RoutingPlayer(VoicePlayer(androidContext()), get()) }
 
     single<PttSessionLauncher> { ServicePttSessionLauncher(androidContext()) }
 
     // MainActivity's start/stop counts, reported into the tracker — see its KDoc for why a
     // stopped Activity and the overlay/widget do not count as foreground.
     single<ForegroundProvider> { ActivityForegroundTracker }
+
+    // The Wear OS remote: another observer of PttController, started and stopped with the service.
+    single { WearBridge(androidContext(), get(), get()) }
 
     single {
         OverlayController(

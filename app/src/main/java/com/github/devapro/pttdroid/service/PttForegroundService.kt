@@ -18,6 +18,7 @@ import com.github.devapro.pttdroid.domain.PttController
 import com.github.devapro.pttdroid.history.HistoryStore
 import com.github.devapro.pttdroid.internalserver.InternalPttServer
 import com.github.devapro.pttdroid.overlay.OverlayController
+import com.github.devapro.pttdroid.wear.WearBridge
 import com.github.devapro.pttdroid.widget.PttWidgetUpdater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +44,7 @@ class PttForegroundService : Service() {
     private val historyStore: HistoryStore by inject()
     private val overlayController: OverlayController by inject()
     private val internalServer: InternalPttServer by inject()
+    private val wearBridge: WearBridge by inject()
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var started = false
@@ -56,6 +58,7 @@ class PttForegroundService : Service() {
         // A record whose WAV made it to disk but whose index entry did not (process death in
         // between) is invisible to every other path; this is its only collection.
         scope.launch { historyStore.pruneOrphans() }
+        wearBridge.start()
         observeState()
     }
 
@@ -264,6 +267,7 @@ class PttForegroundService : Service() {
         internalServer.stop()
         syncHeadsetButton(enabled = false)
         overlayController.hide()
+        wearBridge.stop()
         controller.shutdown()
         scope.cancel()
         super.onDestroy()

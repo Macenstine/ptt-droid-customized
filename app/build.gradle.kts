@@ -88,6 +88,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Installs beside a release copy of the app instead of fighting it over the package
+            // name and signing key. `:wear`'s debug build uses the same suffix, which is what
+            // keeps the pair matching for the Wearable Data Layer.
+            applicationIdSuffix = ".dev"
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -165,6 +171,9 @@ dependencies {
     // module's classpath for PTTdroidApplication's startKoin (Phase 2 of the module-graph
     // refactor).
     implementation(project(":ui-shell"))
+    // Wear OS remote: the shared wire format, and the Data Layer client the bridge talks through.
+    implementation(project(":wear-protocol"))
+    implementation(libs.play.services.wearable)
     // The MVI base (`mvi/`) moved to :core in step 5 of the module-graph refactor. :app names the
     // feature ViewModels (by inject()), and their MviViewModel supertype must be on this
     // module's compile classpath to resolve their members (`onAction`) — :core is
