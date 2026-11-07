@@ -36,3 +36,5 @@ include(":features:settings")
 include(":features:history")
 include(":ui-shell")
 include(":desktopApp")
+// Wear OS companion: a thin remote for the phone app (docs/wear-companion.md).
+include(":wear-protocol")

@@ -25,6 +25,10 @@ voyager = "1.1.0-beta03"
 # used directly by :app).
 lifecycleCompose = "2.11.0"
 kermit = "2.1.0"
+# Wear OS companion (:wear, and the phone-side bridge in :app). wearCompose 1.4.1 is a conservative
+# pick under the compileSdk 36 cap; check minCompileSdk before bumping.
+wearCompose = "1.4.1"
+playServicesWearable = "19.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -77,6 +81,10 @@ voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator",
 network-ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 # Test-only: generates a real self-signed certificate to point the pinned trust manager at.
 network-ktor-tls-certificates = { group = "io.ktor", name = "ktor-network-tls-certificates", version.ref = "ktor" }
+wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
+wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
