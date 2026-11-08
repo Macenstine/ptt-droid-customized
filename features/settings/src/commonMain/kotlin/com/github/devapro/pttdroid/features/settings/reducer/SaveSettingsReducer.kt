@@ -1,11 +1,13 @@
 package com.github.devapro.pttdroid.features.settings.reducer
 
+import com.github.devapro.pttdroid.PttLog
 import com.github.devapro.pttdroid.data.settings.SettingsRepository
 import com.github.devapro.pttdroid.features.api.settings.SettingsAction
 import com.github.devapro.pttdroid.features.api.settings.SettingsState
 import com.github.devapro.pttdroid.model.UiEvent
 import com.github.devapro.pttdroid.mvi.Reducer
 import com.github.devapro.pttdroid.shared.resources.*
+import kotlinx.coroutines.CancellationException
 import kotlin.reflect.KClass
 
 /**
@@ -37,7 +39,20 @@ class SaveSettingsReducer(
     ): Reducer.Result<SettingsState, SettingsAction, UiEvent?> {
         val form = state.form ?: return Reducer.Result(state)
         if (form.hasError) return Reducer.Result(state)
-        settingsRepository.save(form.toSettings())
+        // Throwable, not Exception: a broken runtime surfaces as an Error (NoClassDefFoundError
+        // for sun.misc.Unsafe in a jpackage image missing jdk.unsupported), which would
+        // otherwise kill the viewModelScope coroutine with no feedback at all.
+        try {
+            settingsRepository.save(form.toSettings())
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Throwable) {
+            PttLog.e(e) { "Saving settings failed" }
+            return Reducer.Result(
+                state,
+                event = UiEvent.ShowMessage(Res.string.settings_save_failed),
+            )
+        }
         return Reducer.Result(
             state.copy(form = null),
             SettingsAction.Reconnect,
