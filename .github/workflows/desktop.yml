@@ -148,4 +148,6 @@ jobs:
       - name: Attach the installers
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          # `**`, not `*`: the Windows artifact uploads two globs, so upload-artifact keeps their
+          # msi/ and exe/ subdirectories and `dist/*` matched neither (v1.0.2 shipped without them).
+          files: dist/**

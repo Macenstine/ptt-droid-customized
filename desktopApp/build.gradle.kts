@@ -66,6 +66,12 @@ compose.desktop {
             )
             packageName = "PTTdroid"
             packageVersion = appVersionName
+            // jpackage bundles a jlinked runtime holding only the modules listed here, and
+            // `:desktopApp:run` (a full JDK) hides what is missing. DataStore's shaded protobuf
+            // needs sun.misc.Unsafe from jdk.unsupported; without it every settings save died
+            // with NoClassDefFoundError in the installed app. Re-run
+            // `./gradlew :desktopApp:suggestRuntimeModules` after adding dependencies.
+            modules("java.instrument", "java.management", "jdk.unsupported")
         }
     }
 }
