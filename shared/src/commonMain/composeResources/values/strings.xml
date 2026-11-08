@@ -122,6 +122,7 @@
     <string name="settings_host_server_summary">Run the server here so no separate machine is needed. Others connect to this device’s IP on the same Wi‑Fi.</string>
     <string name="settings_save">Save and reconnect</string>
     <string name="settings_saved">Settings saved</string>
+    <string name="settings_save_failed">Could not save settings</string>
 
     <!-- Validation -->
     <string name="error_host_blank">Enter the relay\'s address</string>
