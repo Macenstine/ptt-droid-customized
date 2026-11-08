@@ -1,0 +1,2 @@
+* Fixed settings not saving in the desktop installers
+* Desktop installers now attach to the release
