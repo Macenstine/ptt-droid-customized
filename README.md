@@ -1,6 +1,10 @@
 # PTTdroid
 
-**Forked:** I wanted to make some fixes and modifications, and experiment with this app. This is my fork of PTT-Droid, use at your own risk. All the original code and documentation is credited to [devapro](https://github.com/devapro). Original Repo: [ptt-client-android](https://github.com/devapro/ptt-client-android)
+**Forked:** I wanted to make some fixes and modifications, and experiment with this app. This is my fork of PTT-Droid, use at your own risk. All the original code and documentation is credited to [devapro](https://github.com/devapro)
+
+Original Repo: [ptt-client-android](https://github.com/devapro/ptt-client-android)
+
+Original project webpage: https://devapro.github.io/ptt-client-android/
 
 ***
 
