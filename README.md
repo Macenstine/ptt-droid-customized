@@ -1,5 +1,9 @@
 # PTTdroid
 
+**Forked:** I wanted to make some fixes and modifications, and experiment with this app. This is my fork of PTT-Droid, use at your own risk. All the original code and documentation is credited to [devapro](https://github.com/devapro). Original Repo: [ptt-client-android](https://github.com/devapro/ptt-client-android)
+
+***
+
 A push-to-talk radio for a channel you host yourself — Android, desktop and iOS, built on one
 Compose Multiplatform codebase. Hold the button, talk, everyone else on your channel hears you —
 over your own [PTT server](https://github.com/devapro/ptt-server), or over the relay the
@@ -41,13 +45,7 @@ system, so it gets the slider and no keys.
 
 ## Install
 
-Every tagged release carries a signed APK on its
-[GitHub release](https://github.com/devapro/ptt-client-android/releases), alongside the desktop
-installers.
-
-This project publishes no F-Droid repository of its own; a submission to the official F-Droid
-catalogue is in review. Why it is one channel rather than two, and what releasing involves:
-[`docs/fdroid.md`](docs/fdroid.md).
+[Releases](https://github.com/Macenstine/ptt-droid-customized/releases)
 
 ## Quick start
 
