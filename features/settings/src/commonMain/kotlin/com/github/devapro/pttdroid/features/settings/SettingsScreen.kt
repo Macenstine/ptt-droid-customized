@@ -158,6 +158,8 @@ private fun SettingsScreenContent(
 ) {
     val endpointUrl = form.toSettings().displayUrl()
     var showShare by remember { mutableStateOf(false) }
+    var scanning by remember { mutableStateOf(false) }
+    ScanRelayFlow(active = scanning, onClose = { scanning = false }, onAction = onAction)
     if (showShare) {
         ShareRelayDialog(settings = form.stored, onDismiss = { showShare = false })
     }
@@ -234,6 +236,7 @@ private fun SettingsScreenContent(
                 endpointUrl = endpointUrl,
                 canShare = form.stored.serverMode.isCustom,
                 onShare = { showShare = true },
+                onScan = { scanning = true },
                 onAction = onAction,
             )
 
@@ -298,6 +301,7 @@ private fun ServerSection(
     endpointUrl: String,
     canShare: Boolean,
     onShare: () -> Unit,
+    onScan: () -> Unit,
     onAction: (SettingsAction) -> Unit,
 ) {
     SectionCard(
@@ -347,6 +351,13 @@ private fun ServerSection(
         if (canShare) {
             OutlinedButton(onClick = onShare, modifier = Modifier.fillMaxWidth()) {
                 Text(stringResource(Res.string.settings_share_button))
+            }
+        }
+
+        // Camera scanning is Android-only; elsewhere the button is simply not offered.
+        if (canScanRelayQr) {
+            OutlinedButton(onClick = onScan, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(Res.string.settings_scan_button))
             }
         }
     }

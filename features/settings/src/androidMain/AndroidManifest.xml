@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Relay QR scanner. Asked for at runtime, only when the user taps Scan. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Not required: the app works on a device with no camera, it just cannot scan. -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+</manifest>

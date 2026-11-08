@@ -66,6 +66,13 @@ kotlin {
             api(projects.featuresApi.settings)
         }
         androidMain.get().dependencies {
+            // Relay QR scanner: CameraX for the preview and frames, ZXing to decode them. Both are
+            // plain libraries, so scanning works on phones without Google Play services.
+            implementation(libs.androidx.camera.camera2)
+            implementation(libs.androidx.camera.lifecycle)
+            implementation(libs.androidx.camera.view)
+            implementation(libs.zxing.core)
+            implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.enforcedPlatform(libs.androidx.compose.bom.get()))
         }
         // The moved SettingsReducersTest. commonTest reaches both the android-unit-test and the

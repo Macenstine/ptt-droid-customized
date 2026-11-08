@@ -130,6 +130,25 @@
     <string name="settings_share_include_token_summary">Anyone who scans the code can then use the relay. Leave off unless you trust everyone who can see it.</string>
     <string name="settings_share_failed">Could not create a QR code for this relay.</string>
     <string name="settings_share_close">Close</string>
+    <string name="settings_scan_button">Scan relay QR code</string>
+    <string name="settings_scan_title">Scan relay code</string>
+    <string name="settings_scan_hint">Point the camera at a PTTdroid relay QR code.</string>
+    <string name="settings_scan_permission">Camera access is needed to scan a code.</string>
+    <string name="settings_scan_grant">Allow camera</string>
+    <string name="settings_scan_cancel">Cancel</string>
+    <string name="settings_scan_confirm_title">Use this relay?</string>
+    <string name="settings_scan_confirm_relay">Relay: %1$s</string>
+    <string name="settings_scan_confirm_encrypted">Encrypted connection: %1$s</string>
+    <string name="settings_scan_confirm_pin">Certificate pin: %1$s</string>
+    <string name="settings_scan_confirm_token">Access token: %1$s</string>
+    <string name="settings_scan_yes">yes</string>
+    <string name="settings_scan_no">no</string>
+    <string name="settings_scan_included">included</string>
+    <string name="settings_scan_none">none</string>
+    <string name="settings_scan_confirm_note">This fills in the form. Nothing is saved until you press Save and reconnect. Only continue if you trust where the code came from.</string>
+    <string name="settings_scan_apply">Fill in settings</string>
+    <string name="settings_scan_invalid">That is not a valid PTTdroid relay code.</string>
+    <string name="settings_scan_ok">OK</string>
 
     <!-- Validation -->
     <string name="error_host_blank">Enter the relay\'s address</string>
