@@ -44,7 +44,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.github.devapro.pttdroid"
+        applicationId = providers.gradleProperty("pttApplicationId").getOrElse("com.github.devapro.pttdroid")
         minSdk = 24
         targetSdk = 36
         versionCode = appVersionCode
