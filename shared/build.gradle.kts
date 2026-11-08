@@ -110,6 +110,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.androidx.datastore.preferences)
             implementation(libs.kermit)
+            // Pure-Kotlin QR encoder (no platform code, no permissions) for the relay share dialog.
+            implementation(libs.qrcode.kotlin)
         }
         jvmCommonMain.dependencies {
             implementation(libs.network.ktor.okhttp)

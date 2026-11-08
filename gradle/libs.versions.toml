@@ -12,6 +12,7 @@ activityCompose = "1.13.0"
 composeBom = "2026.06.01"
 timber = "5.0.1"
 datastorePreferences = "1.2.1"
+qrcodeKotlin = "4.5.0"
 glance = "1.2.0"
 coroutines = "1.11.0"
 serializationJson = "1.11.0"
@@ -52,6 +53,7 @@ network-ktor-server-websockets = { group = "io.ktor", name = "ktor-server-websoc
 logs-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+qrcode-kotlin = { group = "io.github.g0dkar", name = "qrcode-kotlin", version.ref = "qrcodeKotlin" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationJson" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime" }

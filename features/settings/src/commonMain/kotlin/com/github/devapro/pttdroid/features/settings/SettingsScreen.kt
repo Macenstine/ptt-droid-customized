@@ -39,7 +39,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.key
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
@@ -154,6 +157,10 @@ private fun SettingsScreenContent(
     modifier: Modifier,
 ) {
     val endpointUrl = form.toSettings().displayUrl()
+    var showShare by remember { mutableStateOf(false) }
+    if (showShare) {
+        ShareRelayDialog(settings = form.stored, onDismiss = { showShare = false })
+    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -225,6 +232,8 @@ private fun SettingsScreenContent(
                 addressProblem = form.addressProblem,
                 hasError = form.hasError,
                 endpointUrl = endpointUrl,
+                canShare = form.stored.serverMode.isCustom,
+                onShare = { showShare = true },
                 onAction = onAction,
             )
 
@@ -287,6 +296,8 @@ private fun ServerSection(
     addressProblem: ServerAddress.Problem?,
     hasError: Boolean,
     endpointUrl: String,
+    canShare: Boolean,
+    onShare: () -> Unit,
     onAction: (SettingsAction) -> Unit,
 ) {
     SectionCard(
@@ -329,6 +340,14 @@ private fun ServerSection(
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+        }
+
+        // Only a relay that is already saved can be shared: the code is built from what is on
+        // disk, so an address still being typed has nothing to hand over yet.
+        if (canShare) {
+            OutlinedButton(onClick = onShare, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(Res.string.settings_share_button))
+            }
         }
     }
 }

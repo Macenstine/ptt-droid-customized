@@ -123,6 +123,13 @@
     <string name="settings_save">Save and reconnect</string>
     <string name="settings_saved">Settings saved</string>
     <string name="settings_save_failed">Could not save settings</string>
+    <string name="settings_share_button">Share relay as QR code</string>
+    <string name="settings_share_title">Share relay</string>
+    <string name="settings_share_relay">Relay: %1$s</string>
+    <string name="settings_share_include_token">Include access token</string>
+    <string name="settings_share_include_token_summary">Anyone who scans the code can then use the relay. Leave off unless you trust everyone who can see it.</string>
+    <string name="settings_share_failed">Could not create a QR code for this relay.</string>
+    <string name="settings_share_close">Close</string>
 
     <!-- Validation -->
     <string name="error_host_blank">Enter the relay\'s address</string>
